@@ -2,7 +2,7 @@ version: '3.8'
 services:
   app:
     build: .
-    entrypoint: .docker/entrypoint
+    entrypoint: .docker/entrypoint.sh
     container_name: nodejs
     ports:
       - '3000:3000'
