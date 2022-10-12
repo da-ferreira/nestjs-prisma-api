@@ -1,6 +1,7 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { DatabaseInterceptor } from './common/errors/interceptors/database.interceptor';
 import { NotFoundInterceptor } from './common/errors/interceptors/notFound.interceptor';
 import { UnauthorizedInterceptor } from './common/errors/interceptors/unauthorized.interceptor';
 
@@ -20,6 +21,7 @@ async function bootstrap() {
   // A aplicação vai verificar todas as requisições que chegarem
   app.useGlobalInterceptors(new UnauthorizedInterceptor());
   app.useGlobalInterceptors(new NotFoundInterceptor());
+  app.useGlobalInterceptors(new DatabaseInterceptor());
 
   await app.listen(process.env.PORT || 3000);
 }
